@@ -2,9 +2,11 @@
 
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
-use Egulias\EmailValidator\Validation\Exception\EmptySanitizersList;
+use ScarletSpruce\EmailSanitizer\EmailSanitizer\Exception\EmptySanitizersList;
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeException;
 use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
+use ScarletSpruce\EmailSanitizer\Sanitize\Warning\MultipleWarning;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class MultipleEmailSanitizerWithAnd
@@ -57,12 +59,16 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
     {
         $result = true;
         $warnings = [];
-        foreach ($this->sanitizers as $sanitizer) {
-            $email = $sanitizer->sanitize($email);
-            if ($sanitizer->getWarnings()) {
-                $warnings[] = $sanitizer->getWarnings();
-            }
 
+        foreach ($this->sanitizers as $sanitizer) {
+            try {
+                $email = $sanitizer->sanitize($email);
+                if ($sanitizer->getWarnings()) {
+                    $warnings[] = $sanitizer->getWarnings();
+                }
+            } catch (Exception $e) {
+                $warnings[] = $e->getMessage();
+            }
         }
 
         if (!empty($warnings)) {

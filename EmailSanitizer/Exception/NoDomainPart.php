@@ -1,8 +1,6 @@
 <?php
 
-namespace Egulias\EmailValidator\Exception;
-
-use ScarletSpruce\EmailSanitizer\Exception\SanitizeWarningException;
+namespace ScarletSpruce\EmailSanitizer\Exception;
 
 class NoDomainPart extends SanitizeWarningException
 {

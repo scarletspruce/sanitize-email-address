@@ -1,6 +1,6 @@
 <?php
 
-namespace Egulias\EmailValidator\Validation\Exception;
+namespace ScarletSpruce\EmailSanitizer\EmailSanitizer\Exception;
 
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeException;
 

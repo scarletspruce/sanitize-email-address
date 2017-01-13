@@ -1,6 +1,6 @@
 <?php
 
-namespace ScarletSpruce\EmailSanitizer\Sanitize;
+namespace ScarletSpruce\EmailSanitizer\Sanitize\Warning;
 
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeWarningException;
 

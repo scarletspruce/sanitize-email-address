@@ -4,6 +4,7 @@ namespace ScarletSpruce\EmailSanitizer\Sanitize\Traits;
 use Egulias\EmailValidator\EmailLexer;
 use Egulias\EmailValidator\EmailParser;
 use Exception;
+use ScarletSpruce\EmailSanitizer\Exception\InvalidEmail;
 
 trait EmailInfoTrait
 {
@@ -32,6 +33,7 @@ trait EmailInfoTrait
     public function getLocalPart()
     {
         $parts = $this->getEmailParts();
+
         return $parts['local'];
     }
 
@@ -55,28 +57,11 @@ trait EmailInfoTrait
         try {
             $result = $parser->parse($this->email);
         } catch (Exception $e) {
-            $result = [
-                'local'  => $this->getSimpleEmailPart($this->email, true),
-                'domain' => $this->getSimpleEmailPart($this->email),
-            ];
+            throw new InvalidEmail();
         }
 
         return $result;
     }
 
-    /**
-     * Get part of email address
-     *
-     * @param bool $local Local part
-     *
-     * @return string
-     */
-    protected static function getSimpleEmailPart($email, $local = false)
-    {
-        if (false === mb_strpos($email, '@')) {
-            return $email;
-        }
 
-        return ltrim(mb_strrchr($email, '@', (bool)$local), '@');
-    }
 }
