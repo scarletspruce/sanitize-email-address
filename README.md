@@ -11,7 +11,7 @@ With the help of [PHPStorm](https://www.jetbrains.com/phpstorm/)
 Run the command below to install via Composer
 
 ```shell
-composer require scarletspruce/email-validator "dev-master"
+composer require scarletspruce/sanitize-email-address "dev-master"
 ```
 
 ##Getting Started##
