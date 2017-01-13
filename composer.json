@@ -1,0 +1,26 @@
+{
+  "name":         "scarletspruce/sanitize-email-address",
+  "description":  "A library for sanitize emails",
+  "homepage":     "https://github.com/scarletspruce/sanitize-email-address",
+  "type":         "Library",
+  "keywords":     ["email", "sanitizer", "sanitize", "emailsanitizer", "emailsanitizerr"],
+  "license":      "MIT",
+  "authors": [
+    {"name": "Valentin Nikolaev"}
+  ],
+  "require":      {
+    "php": ">= 5.5",
+    "egulias/email-validator": "~2.1"
+  },
+  "require-dev" :   {
+    "satooshi/php-coveralls": "dev-master",
+    "phpunit/phpunit": "^4.8.0",
+    "dominicsayers/isemail": "dev-master"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "ScarletSpruce\\EmailSanitizer\\": "EmailSanitizer"
+    }
+  }
+}
