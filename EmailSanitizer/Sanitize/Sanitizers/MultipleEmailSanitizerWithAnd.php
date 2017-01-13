@@ -3,9 +3,9 @@
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
 use ScarletSpruce\EmailSanitizer\EmailSanitizer\Exception\EmptySanitizersList;
+use ScarletSpruce\EmailSanitizer\Exception\MultipleErrors;
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeException;
 use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
-use ScarletSpruce\EmailSanitizer\Sanitize\Warning\MultipleWarning;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
@@ -23,6 +23,11 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
      * @var array
      */
     private $warnings = [];
+
+    /**
+     * @var Exception
+     */
+    private $error;
 
 
     /**
@@ -44,6 +49,16 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
     }
 
     /**
+     * Returns the validation error.
+     *
+     * @return \Exception|null
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
      * @return array
      */
     public function getWarnings()
@@ -58,21 +73,25 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
     public function sanitize($email)
     {
         $result = true;
-        $warnings = [];
+        $errors = [];
 
         foreach ($this->sanitizers as $sanitizer) {
             try {
                 $email = $sanitizer->sanitize($email);
-                if ($sanitizer->getWarnings()) {
-                    $warnings[] = $sanitizer->getWarnings();
+
+                $this->warnings = array_merge($this->warnings, $sanitizer->getWarnings());
+
+                if (null !== $this->getError()) {
+                    $errors[] = $this->getError();
                 }
+
             } catch (Exception $e) {
-                $warnings[] = $e->getMessage();
+                $errors[] = $e;
             }
         }
 
-        if (!empty($warnings)) {
-            $this->warnings = new MultipleWarning($warnings);
+        if (!empty($errors)) {
+            $this->error = new MultipleErrors($errors);
         }
 
         return $result;

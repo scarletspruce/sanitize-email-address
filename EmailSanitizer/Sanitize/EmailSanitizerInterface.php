@@ -2,6 +2,7 @@
 
 namespace ScarletSpruce\EmailSanitizer\Sanitize;
 
+use Exception;
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeWarningException;
 
 /**
@@ -23,4 +24,11 @@ interface EmailSanitizerInterface
      * @return SanitizeWarningException[]
      */
     public function getWarnings();
+
+    /**
+     * Returns the validation error.
+     *
+     * @return Exception|null
+     */
+    public function getError();
 }

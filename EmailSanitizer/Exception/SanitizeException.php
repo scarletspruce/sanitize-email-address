@@ -8,15 +8,20 @@ namespace ScarletSpruce\EmailSanitizer\Exception;
  */
 class SanitizeException extends \InvalidArgumentException
 {
-    const REASON = "Sanitize error";
-    const CODE = 100;
+    const REASON = "Sanitize exception";
+    const CODE = 0;
 
     public function __construct($message = null)
     {
         $message = $message
             ? $message
-            : self::REASON;
+            : static::REASON;
 
         parent::__construct($message, static::CODE);
+    }
+
+    public function __toString()
+    {
+        return $this->message . '[' . $this->getCode() . ']';
     }
 }

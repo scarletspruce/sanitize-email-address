@@ -21,26 +21,26 @@ class DomainIncorrectSanitizer extends AbstractSanitizer
      * @var array
      */
     private $incorrectDomains = [
-        'hotmal.co'   => 'hotmail.com',
-        'hotmil.co'   => 'hotmail.com',
-        'homail.com'  => 'hotmail.com',
-        'gmai.com'    => 'gmail.com',
+        'hotmal.co' => 'hotmail.com',
+        'hotmil.co' => 'hotmail.com',
+        'homail.com' => 'hotmail.com',
+        'gmai.com' => 'gmail.com',
         'gmail.comra' => 'gmail.com',
-        'gamil.com'   => 'gmail.com',
-        'outloo.com'  => 'outlook.com',
-        'mail.'       => 'mail.ru',
-        'mail.rt'     => 'mail.ru',
-        'mail.rui'    => 'mail.ru',
-        'майл.р'      => 'mail.ru',
-        'майл.ру'     => 'mail.ru',
-        'маилру'      => 'mail.ru',
-        'maill.ru'    => 'mail.ru',
-        'meil.ru'     => 'mail.ru',
-        'indox.ru'    => 'inbox.ru',
-        'yndex.ru'    => 'yandex.ru',
-        'yand.ru'     => 'yandex.ru',
-        'yande.ru'    => 'yandex.ru',
-        'yan.ru'      => 'yandex.ru',
+        'gamil.com' => 'gmail.com',
+        'outloo.com' => 'outlook.com',
+        'mail.' => 'mail.ru',
+        'mail.rt' => 'mail.ru',
+        'mail.rui' => 'mail.ru',
+        'майл.р' => 'mail.ru',
+        'майл.ру' => 'mail.ru',
+        'маилру' => 'mail.ru',
+        'maill.ru' => 'mail.ru',
+        'meil.ru' => 'mail.ru',
+        'indox.ru' => 'inbox.ru',
+        'yndex.ru' => 'yandex.ru',
+        'yand.ru' => 'yandex.ru',
+        'yande.ru' => 'yandex.ru',
+        'yan.ru' => 'yandex.ru',
         'comcast.ent' => 'comcast.net',
     ];
 
@@ -56,7 +56,8 @@ class DomainIncorrectSanitizer extends AbstractSanitizer
         }
 
         if ($incorrectFirstLevelDomains) {
-            $this->incorrectFirstLevelDomains = array_merge($this->incorrectFirstLevelDomains, $incorrectFirstLevelDomains);
+            $this->incorrectFirstLevelDomains = array_merge($this->incorrectFirstLevelDomains,
+                $incorrectFirstLevelDomains);
         }
     }
 

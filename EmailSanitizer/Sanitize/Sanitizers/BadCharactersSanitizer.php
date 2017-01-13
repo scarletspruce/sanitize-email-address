@@ -2,8 +2,6 @@
 
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
-use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
-
 /**
  * Class BadCharactersSanitizer
  * @package ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers

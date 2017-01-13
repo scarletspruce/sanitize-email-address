@@ -3,8 +3,6 @@
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
 use Egulias\EmailValidator\Validation\Exception\EmptySanitizersList;
-use ScarletSpruce\EmailSanitizer\Exception\SanitizeException;
-use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
 
 /**
  * Class DotsSanitizer

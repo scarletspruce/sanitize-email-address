@@ -10,6 +10,16 @@ abstract class AbstractSanitizer implements EmailSanitizerInterface
 {
     protected $warnings = [];
 
+    protected $error;
+
+    /**
+     * @return mixed
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
     /**
      * @return array
      */

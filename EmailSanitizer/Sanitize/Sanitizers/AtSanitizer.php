@@ -3,7 +3,6 @@
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
 use Egulias\EmailValidator\Exception\NoDomainPart;
-use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
 
 /**
  * Class DotsSanitizer
@@ -39,7 +38,6 @@ class AtSanitizer extends AbstractSanitizer
             $this->atDomains = array_merge($this->atDomains, $atDomains);
         }
     }
-
 
 
     /**
