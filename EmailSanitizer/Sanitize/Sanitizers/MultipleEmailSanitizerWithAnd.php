@@ -2,11 +2,11 @@
 
 namespace ScarletSpruce\EmailSanitizer\Sanitize\Sanitizers;
 
+use Exception;
 use ScarletSpruce\EmailSanitizer\EmailSanitizer\Exception\EmptySanitizersList;
 use ScarletSpruce\EmailSanitizer\Exception\MultipleErrors;
 use ScarletSpruce\EmailSanitizer\Exception\SanitizeException;
 use ScarletSpruce\EmailSanitizer\Sanitize\EmailSanitizerInterface;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class MultipleEmailSanitizerWithAnd
@@ -85,12 +85,13 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
                 }
 
             } catch (Exception $e) {
+
                 $errors[] = $e;
             }
         }
 
         if (!empty($errors)) {
-            $this->error = new MultipleErrors($errors);
+            $this->error = (new MultipleErrors())->setErrors($errors);
         }
 
         return $email;
