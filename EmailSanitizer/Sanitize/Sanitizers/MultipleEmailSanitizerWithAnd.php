@@ -72,7 +72,6 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
      */
     public function sanitize($email)
     {
-        $result = true;
         $errors = [];
 
         foreach ($this->sanitizers as $sanitizer) {
@@ -94,6 +93,6 @@ class MultipleEmailSanitizerWithAnd implements EmailSanitizerInterface
             $this->error = new MultipleErrors($errors);
         }
 
-        return $result;
+        return $email;
     }
 }
